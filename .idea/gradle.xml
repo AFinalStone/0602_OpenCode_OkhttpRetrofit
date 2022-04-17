@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/0101_Okhttp" />
+            <option value="$PROJECT_DIR$/0103_HttpProxy" />
           </set>
         </option>
       </GradleProjectSettings>
