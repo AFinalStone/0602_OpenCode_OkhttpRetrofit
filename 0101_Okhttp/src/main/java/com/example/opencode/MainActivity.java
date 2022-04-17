@@ -12,6 +12,3 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
-    git remote add origin git@github.com:AFinalStone/Android03_OpenCode.git
-        git branch -M main
-        git push -u origin main
