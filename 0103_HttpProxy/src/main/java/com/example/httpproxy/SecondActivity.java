@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 public class SecondActivity extends AppCompatActivity {
 
+    public static String TAG = "SecondActivity========";
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,12 +43,12 @@ public class SecondActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("TAG", response);
+                        Log.d(TAG, response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", error.getMessage(), error);
+                Log.e(TAG, error.getMessage(), error);
             }
         });
         queue.add(stringRequest);
@@ -57,12 +58,12 @@ public class SecondActivity extends AppCompatActivity {
         FacadeNetwork.getInstance(this).get("https://www.baidu.com", new HashMap<>(), new FacadeNetwork.CallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                Log.d("TAG", s);
+                Log.d(TAG, s);
             }
 
             @Override
             public void onFailed(String msg) {
-                Log.e("TAG", msg);
+                Log.e(TAG, msg);
             }
         });
     }
