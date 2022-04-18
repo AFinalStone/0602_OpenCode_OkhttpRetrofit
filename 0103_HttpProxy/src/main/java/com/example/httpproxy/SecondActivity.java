@@ -48,9 +48,9 @@ public class SecondActivity extends AppCompatActivity {
     private void test02() {
         APerson aPerson = new APerson("小明", 15, 20180512);
         String response = new Gson().toJson(aPerson);
-        HttpManager.getInstance().get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<APerson>() {
+        HttpManager.getInstance().get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<String>() {
             @Override
-            public void onSuccess(APerson s) {
+            public void onSuccess(String s) {
                 Log.d(TAG, String.valueOf(s));
             }
 
