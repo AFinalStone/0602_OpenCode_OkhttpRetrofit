@@ -39,4 +39,9 @@ public class HttpImpl_Me implements IHttp {
             callback.onSuccess((T) mockResponse);
         }
     }
+
+    @Override
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+
+    }
 }

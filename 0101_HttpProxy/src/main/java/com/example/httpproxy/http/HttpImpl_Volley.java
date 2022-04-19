@@ -50,11 +50,11 @@ public class HttpImpl_Volley implements IHttp {
                 // 返回实现的接口
                 Type type = GenericUtil.analysisInterfaceInfo(callback);
                 if (type instanceof Class && TextUtils.equals(((Class<?>) type).getName(), String.class.getName())) {
-                    callback.onSuccess((T) mockResponse);
+                    callback.onSuccess((T) response);
                     return;
                 }
                 try {
-                    T t = new Gson().fromJson(mockResponse, type);
+                    T t = new Gson().fromJson(response, type);
                     callback.onSuccess(t);
                 } catch (Exception e) {
                     callback.onFailed("解析失败");
@@ -75,5 +75,10 @@ public class HttpImpl_Volley implements IHttp {
             }
         };
         mQueue.add(stringRequest);
+    }
+
+    @Override
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+
     }
 }

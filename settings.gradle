@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Android0301_OpenCode"
-include ':0101_Okhttp'
-include ':0103_HttpProxy'
+include ':0101_HttpProxy'
+include ':0102_Okhttp'

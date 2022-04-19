@@ -35,12 +35,12 @@ public class SecondActivity extends AppCompatActivity {
         FacadeNetwork.getInstance(this).get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<APerson>() {
             @Override
             public void onSuccess(APerson s) {
-                Log.d(TAG, String.valueOf(s));
+                Log.d(TAG, String.valueOf(s) + "ThreadId=" + Thread.currentThread());
             }
 
             @Override
             public void onFailed(String msg) {
-                Log.e(TAG, msg);
+                Log.e(TAG, String.valueOf(msg) + "ThreadId=" + Thread.currentThread());
             }
         });
     }
@@ -51,12 +51,12 @@ public class SecondActivity extends AppCompatActivity {
         HttpManager.getInstance().get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                Log.d(TAG, String.valueOf(s));
+                Log.d(TAG, String.valueOf(s) + "ThreadId=" + Thread.currentThread());
             }
 
             @Override
             public void onFailed(String msg) {
-                Log.e(TAG, msg);
+                Log.e(TAG, String.valueOf(msg) + "ThreadId=" + Thread.currentThread());
             }
         });
     }

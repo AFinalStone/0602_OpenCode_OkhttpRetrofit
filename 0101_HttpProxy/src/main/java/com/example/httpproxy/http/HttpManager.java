@@ -26,4 +26,9 @@ public class HttpManager implements IHttp {
     public <T> void get(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
         _iHttp.get(url, paras, mockResponse, callback);
     }
+
+    @Override
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+        _iHttp.post(url, paras, mockResponse, callback);
+    }
 }

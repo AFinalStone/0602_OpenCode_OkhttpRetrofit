@@ -11,12 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android0301_OpenCode">
+        <meta-data
+            android:name="app_name"
+            android:value="com.example.httpproxy.HApplication" />
+
         <activity
             android:name=".SecondActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <meta-data
+                android:name="app_name"
+                android:value="com.example.httpproxy.HApplication" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,5 +31,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
