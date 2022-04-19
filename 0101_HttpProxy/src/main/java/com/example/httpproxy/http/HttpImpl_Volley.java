@@ -43,7 +43,7 @@ public class HttpImpl_Volley implements IHttp {
     }
 
     @Override
-    public <T> void get(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void get(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -78,7 +78,7 @@ public class HttpImpl_Volley implements IHttp {
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
 
     }
 }

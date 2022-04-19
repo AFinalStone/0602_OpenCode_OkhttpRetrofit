@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.httpproxy.bean.APerson;
+import com.example.httpproxy.http.CallBack;
 import com.example.httpproxy.http.FacadeNetwork;
 import com.example.httpproxy.http.HttpManager;
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ public class SecondActivity extends AppCompatActivity {
     private void test01() {
         APerson aPerson = new APerson("小明", 15, 20180512);
         String response = new Gson().toJson(aPerson);
-        FacadeNetwork.getInstance(this).get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<APerson>() {
+        FacadeNetwork.getInstance(this).get("https://www.baidu.com", new HashMap<>(), response, new CallBack<APerson>() {
             @Override
             public void onSuccess(APerson s) {
                 Log.d(TAG, String.valueOf(s) + "ThreadId=" + Thread.currentThread());
@@ -48,7 +49,7 @@ public class SecondActivity extends AppCompatActivity {
     private void test02() {
         APerson aPerson = new APerson("小明", 15, 20180512);
         String response = new Gson().toJson(aPerson);
-        HttpManager.getInstance().get("https://www.baidu.com", new HashMap<>(), response, new FacadeNetwork.CallBack<String>() {
+        HttpManager.getInstance().get("https://www.baidu.com", new HashMap<>(), response, new CallBack<String>() {
             @Override
             public void onSuccess(String s) {
                 Log.d(TAG, String.valueOf(s) + "ThreadId=" + Thread.currentThread());

@@ -14,13 +14,6 @@ import java.util.Map;
 
 public class FacadeNetwork {
 
-    public interface CallBack<T> {
-
-        void onSuccess(T t);
-
-        void onFailed(String msg);
-
-    }
 
     private static RequestQueue mQueue;
     private static FacadeNetwork _instance;

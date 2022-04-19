@@ -41,7 +41,7 @@ public class HttpImpl_OkHttp implements IHttp {
     }
 
     @Override
-    public <T> void get(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void get(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
         okhttp3.Request getRequest = new okhttp3.Request.Builder()
                 .url(url)
                 .get()
@@ -75,7 +75,7 @@ public class HttpImpl_OkHttp implements IHttp {
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
 
     }
 }

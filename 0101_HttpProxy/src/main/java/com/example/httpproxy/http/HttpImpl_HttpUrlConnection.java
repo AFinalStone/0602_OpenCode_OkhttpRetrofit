@@ -25,7 +25,7 @@ public class HttpImpl_HttpUrlConnection implements IHttp {
     }
 
     @Override
-    public <T> void get(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void get(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
         new Thread() {
             @Override
             public void run() {
@@ -76,7 +76,7 @@ public class HttpImpl_HttpUrlConnection implements IHttp {
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
 
     }
 }

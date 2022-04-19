@@ -19,7 +19,7 @@ public class HttpImpl_Me implements IHttp {
     }
 
     @Override
-    public <T> void get(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void get(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
         SystemClock.sleep(2000);
         if (callback != null) {
             // 返回实现的接口
@@ -41,7 +41,7 @@ public class HttpImpl_Me implements IHttp {
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> paras, String mockResponse, FacadeNetwork.CallBack<T> callback) {
+    public <T> void post(String url, Map<String, String> paras, String mockResponse, CallBack<T> callback) {
 
     }
 }
