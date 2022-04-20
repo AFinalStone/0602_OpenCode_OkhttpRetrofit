@@ -12,6 +12,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/0001_MyRetrofit" />
             <option value="$PROJECT_DIR$/0101_HttpProxy" />
             <option value="$PROJECT_DIR$/0102_Okhttp" />
           </set>

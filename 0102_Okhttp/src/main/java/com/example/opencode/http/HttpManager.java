@@ -1,6 +1,6 @@
 package com.example.opencode.http;
 
-import com.example.opencode.http.interfaces.ViewCallBack;
+import com.example.opencode.http.interfaces.HttpCallBack;
 import com.example.opencode.http.interfaces.IHttp;
 
 import java.util.Map;
@@ -29,12 +29,12 @@ public class HttpManager implements IHttp {
     }
 
     @Override
-    public <T> void get(String url, Map<String, String> paras, ViewCallBack<T> callback) {
+    public <T> void get(String url, Map<String, String> paras, HttpCallBack<T> callback) {
         mHttpImpl.get(url, paras, callback);
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> paras, ViewCallBack<T> callback) {
+    public <T> void post(String url, Map<String, String> paras, HttpCallBack<T> callback) {
         mHttpImpl.post(url, paras, callback);
     }
 }

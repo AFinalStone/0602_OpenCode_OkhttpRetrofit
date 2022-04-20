@@ -19,8 +19,8 @@ public class HApplication extends Application {
         builder.setDebug(BuildConfig.DEBUG);
         builder.setPackageValue(BuildConfig.APPLICATION_ID);
         builder.setCacheFilePath(getCacheDir().getPath() + System.getProperty("file.separator") + "https");
+        builder.setCacheFileSize(10 * 1024);
         HttpManager.init(new HttpImpl_Okhttp(builder.build()));
-
     }
 
 }

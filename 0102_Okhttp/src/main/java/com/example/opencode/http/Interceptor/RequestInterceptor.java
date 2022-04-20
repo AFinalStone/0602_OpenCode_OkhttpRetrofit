@@ -21,12 +21,20 @@ public class RequestInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws NoNetworkException {
         Request request = chain.request()
                 .newBuilder()
-                .header("deviceid", config.getDeviceId())
+                .header("deviceid", returnNoNull(config.getDeviceId()))
                 .build();
         try {
             return chain.proceed(request);
         } catch (IOException e) {
-            throw new NoNetworkException("请求参数异常");
+            throw new NoNetworkException(e.getMessage());
         }
     }
+
+    private String returnNoNull(String str) {
+        if (str == null || str.isEmpty()) {
+            return "";
+        }
+        return str;
+    }
+
 }

@@ -1,69 +1,65 @@
 package com.example.opencode;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.example.opencode.bean.BaseRespBean;
+import com.example.opencode.bean.LauncherBean;
+import com.example.opencode.http.HttpManager;
+import com.example.opencode.http.callback.ViewCallBackImpl;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BaseView {
     public static String TAG = "MainActivity========";
+
+    private TextView mTvContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    private void test01() throws IOException {
-        OkHttpClient httpClient = new OkHttpClient();
-        String url = "https://www.baidu.com/";
-        Request getRequest = new Request.Builder()
-                .url(url)
-                .get()
-                .build();
-        Call call = httpClient.newCall(getRequest);
-        //同步请求
-        new Thread(new Runnable() {
+        mTvContent = findViewById(R.id.tv_content);
+        findViewById(R.id.btn_get).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                try {
-                    //同步请求，要放到子线程执行
-                    Response response = call.execute();
-                    Log.i(TAG, "okHttpGet run: response:" + response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        //异步请求
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+            public void onClick(View v) {
+                HttpManager.getInstance().get("http://dev.usapi.miyuelive.cn:83/v1/init/start", null, new ViewCallBackImpl<BaseRespBean<LauncherBean>, MainActivity>(MainActivity.this) {
+                    @Override
+                    public void onSuccess(BaseRespBean<LauncherBean> s) {
+                        LauncherBean launcherBean = s.getData();
+                        mTvContent.setText(launcherBean.toString());
+                    }
 
-            }
+                    @Override
+                    public boolean isToastCommError() {
+                        return true;
+                    }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.i(TAG, "okHttpGet enqueue: onResponse:" + response.body().string());
-
-                ResponseBody body = response.body();
-                String string = body.string();
-                byte[] bytes = body.bytes();
-                InputStream inputStream = body.byteStream();
+                    @Override
+                    public boolean isToastBusinessError() {
+                        return true;
+                    }
+                });
             }
         });
+        findViewById(R.id.btn_post).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
 
 
+    @Override
+    public void toastMessage(CharSequence msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void toastMessage(int resId) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
     }
 }
