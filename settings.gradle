@@ -12,7 +12,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Android0301_OpenCode"
+rootProject.name = "Android03_OpenCode"
 include ':0101_HttpProxy'
 include ':0102_Okhttp'
 include ':0001_MyRetrofit'
+include ':0103_Retrofit'
