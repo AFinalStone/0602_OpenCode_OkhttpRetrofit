@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -58,6 +60,12 @@ public class HttpImpl_Okhttp implements IHttp {
     public <T> void get(String url, Map<String, String> paras, HttpCallBack<T> callback) {
         Request request = new Request.Builder().url(url).get().build();
         Call call = mOkHttpClient.newCall(request);
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        call.cancel();
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
