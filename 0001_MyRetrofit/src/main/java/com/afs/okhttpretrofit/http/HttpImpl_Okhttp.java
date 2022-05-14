@@ -4,7 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.afs.okhttpretrofit.bean.LauncherBean;
+import com.afs.okhttpretrofit.bean.BaseRespBean;
+import com.afs.okhttpretrofit.bean.LoginBean;
 import com.afs.okhttpretrofit.http.Interceptor.RequestInterceptor;
 import com.afs.okhttpretrofit.http.Interceptor.ResponseInterceptor;
 import com.afs.okhttpretrofit.http.exception.ResponseException;
@@ -13,6 +14,7 @@ import com.afs.okhttpretrofit.http.interfaces.HttpCallBack;
 import com.afs.okhttpretrofit.http.interfaces.IHttp;
 import com.afs.okhttpretrofit.http.utils.GenericUtil;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -65,9 +67,10 @@ public class HttpImpl_Okhttp implements IHttp {
             throw new ResponseException(response.message(), String.valueOf(response.code()));
         }
         ResponseBody body = response.body();
-        LauncherBean launcherBean = new Gson().fromJson("{\"recharge\":{\"hycz\":\"https://p.mx530.cn/static/img/ns1.png\",\"mbcz\":\"https://p.mx530.cn/static/img/ns2.png\",\"mbcztc\":\"https://p.mx530.cn/image/21/04/29/47a96094ca3a77e9e7f1b58a74ec6b9e.png\",\"mzcz\":\"https://p.mx530.cn/image/21/03/15/e0311256d380816a1c644ee268c56e94.png\",\"mzcztc\":\"https://p.mx530.cn/image/21/04/14/d2b1526086ede8701bda9581222c6d32.png\"},\"sf\":{\"jctj\":\"https://p.mx530.cn/image/21/04/16/20286987cea77f08444d845093138e9d.png\",\"tjjyzb\":\"https://p.mx530.cn/image/21/07/16/cfe776ade3d6709d9c5c9e2b60922905.png\"},\"jy\":{\"yjdzh\":\"https://p.mx530.cn/image/21/04/16/8cecc749c83333f790de742207286e86.png\"},\"live\":{\"zbtjtc\":\"https://p.mx530.cn/static/img/yaoqin.png\"},\"login\":{\"wechat_app_id\":\"wxb7516c01b12667f3\",\"qq_app_id\":\"101957308\",\"yidun_business_id\":\"529f8bfc439d406cb080eee5ef3a04d7\",\"pay_wechat_app_id\":\"wxed0be07dd72f758f\"},\"html\":{\"about_logo\":\"https://x1.mx89.cn:1083/mj/icon.jpg\",\"user_protocol_link\":\"https://x1.mx89.cn:1083/mj/agree_user.html\",\"privacy_protocol_link\":\"https://x1.mx89.cn:1083/mj/agree_privacy.html\",\"recharge_protocol_link\":\"https://x1.mx89.cn:1083/mj/agree_recharge.html\",\"relief_protocol_link\":\"https://x1.mx89.cn:1083/mj/agree_relief.html\",\"culture_protocol_link\":\"https://x1.mx89.cn:1083/mj/culture.html\",\"agree_platform_link\":\"https://x1.mx89.cn:1083/mj/agree_platform.html\",\"protocol_link\":\"https://x1.mx89.cn:1083/mj/protocol.html\",\"teenager_link\":\"https://x1.mx89.cn:1083/mj/teenager.html\",\"copyright_info\":\"版权所有\"}}"
-                , LauncherBean.class);
-        return (T) launcherBean;
+        String data = body.string();
+        BaseRespBean<LoginBean> baseRespBean = new Gson().fromJson(data, new TypeToken<BaseRespBean<LoginBean>>() {
+        }.getType());
+        return (T) baseRespBean.getData();
     }
 
     @Override

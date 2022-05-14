@@ -3,7 +3,7 @@ package com.afs.okhttpretrofit.http.retrofit;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.afs.okhttpretrofit.bean.LauncherBean;
+import com.afs.okhttpretrofit.bean.LoginBean;
 import com.afs.okhttpretrofit.http.interfaces.IHttp;
 import com.afs.okhttpretrofit.http.retrofit.annotate.GET;
 
@@ -26,11 +26,11 @@ public final class Retrofit implements IRetrofit {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Log.d(TAG, method.getName());
-                if ("getGoddessAuthResult".equals(method.getName())) {
+                if ("login".equals(method.getName())) {
                     SystemClock.sleep(5000);
                     GET get = method.getAnnotation(GET.class);
-                    String url = "http://dev.usapi.miyuelive.cn:83" + get.value();
-                    LauncherBean respBean = builder.iHttp.get_sync(url, null);
+                    String url = "https://www.fastmock.site/mock/923c76c832db681132f9ac8d9abd6e05/girl_shopping" + get.value();
+                    LoginBean respBean = builder.iHttp.get_sync(url, null);
                     return respBean;
                 }
                 return null;

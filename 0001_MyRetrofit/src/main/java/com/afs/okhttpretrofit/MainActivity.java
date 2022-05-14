@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.afs.okhttpretrofit.api.MainModuleService;
-import com.afs.okhttpretrofit.bean.LauncherBean;
+import com.afs.okhttpretrofit.bean.LoginBean;
 import com.afs.okhttpretrofit.http.retrofit.RetrofitManager;
 
 
@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity implements BaseView {
                 new Thread() {
                     @Override
                     public void run() {
-                        LauncherBean launcherBean = RetrofitManager.getRetrofit().create(MainModuleService.class).getGoddessAuthResult();
+                        LoginBean loginBean = RetrofitManager.getRetrofit().create(MainModuleService.class).login();
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
                                 hideLoadingView();
-                                mTvContent.setText(launcherBean.toString());
+                                mTvContent.setText(loginBean.toString());
                             }
                         });
                     }
